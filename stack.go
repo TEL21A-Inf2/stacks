@@ -23,10 +23,18 @@ func (s *StackInt) Push(value int) {
 
 // Entfernt das oberste Element vom Stack und liefert es.
 func (s *StackInt) Pop() (int, error) {
-	if s.IsEmpty() {
+	top, error := s.Top()
+	if error != nil {
 		return 0, errors.New("Pop auf leerem Stack aufgerufen")
 	}
-	top := s.data[len(s.data)-1]
 	s.data = s.data[:len(s.data)-1]
 	return top, nil
+}
+
+// Liefert das oberste Element vom Stack.
+func (s StackInt) Top() (int, error) {
+	if s.IsEmpty() {
+		return 0, errors.New("Top auf leerem Stack aufgerufen")
+	}
+	return s.data[len(s.data)-1], nil
 }
