@@ -13,3 +13,8 @@ func NewStackInt() *StackInt {
 func (s StackInt) IsEmpty() bool {
 	return len(s.data) == 0
 }
+
+// Fügt ein Element zum Stack hinzu.
+func (s *StackInt) Push(value int) {
+	s.data = append(s.data, value)
+}
